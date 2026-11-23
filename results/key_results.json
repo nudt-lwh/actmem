@@ -1,0 +1,71 @@
+{
+  "paper": "Consolidating Action Policies into LoRA Weights Complements Retrieval for API-Calling Agents",
+  "api_bank_e1_five_splits": {
+    "rag": 0.672,
+    "hybrid": 0.872,
+    "paired_gain_points": 20.0
+  },
+  "api_bank_fixed_split_five_training_seeds": {
+    "rag": 0.661,
+    "hybrid": 0.857,
+    "hybrid_std": 0.019,
+    "gain": 0.196,
+    "t": 23.1,
+    "df": 4
+  },
+  "compact_schema": {
+    "rag": 0.549,
+    "adapter_plus_compact": 0.736,
+    "prompt_tokens": 282
+  },
+  "bm25_adapter_gain_points": {
+    "k1": 11.0,
+    "k3": 11.0,
+    "k5": 11.9
+  },
+  "heldout_all_tasks": {
+    "rag_unweighted": 0.716,
+    "hybrid_unweighted": 0.708,
+    "pooled_rag": 0.698,
+    "pooled_hybrid": 0.663
+  },
+  "qwen3_8b": {
+    "rag": 0.679,
+    "lora_only": 0.339,
+    "hybrid": 0.853
+  },
+  "qwen3_1_7b": {
+    "rag": 0.183,
+    "lora_only": 0.338,
+    "hybrid": 0.87
+  },
+  "phi_3_5_mini": {
+    "rag": 0.422,
+    "lora_only": 0.33,
+    "hybrid": 0.838
+  },
+  "counterfactual_renaming_v2": {
+    "rag": 0.422,
+    "lora_only": 0.101,
+    "hybrid": 0.807
+  },
+  "tau2_next_action_exact": {
+    "tools": 0.196,
+    "adapter_plus_tools": 0.346,
+    "adapter_no_tools": 0.084
+  },
+  "additional_analyses_not_in_current_manuscript": {
+    "no_description_training": {
+      "test_no_docs": 0.807,
+      "test_full_docs": 0.844,
+      "standard_test_no_docs": 0.339,
+      "standard_test_full_docs": 0.835
+    },
+    "test_time_rename_doc_present_83": {
+      "base_original": 0.723,
+      "adapter_original": 0.88,
+      "base_renamed": 0.675,
+      "adapter_renamed": 0.759
+    }
+  }
+}

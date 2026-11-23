@@ -1,0 +1,8 @@
+node_id,label_en,label_cn,partition,x,y,w,h,shape,color_role,input,output,persistent,source
+task,Task request,任务请求,inference input,3.0,41.0,35.0,14.0,rounded box,base_model,user instruction + dialogue,request text,no,Section 3.2; Appendix A prompt
+docs,API documentation,API 文档,context lane,3.0,23.0,35.0,14.0,rounded box,context,benchmark API descriptions (oracle) or BM25 top-k,instance-specific specifications,no (supplied per request),Section 3.2; Section 5.3; Table 6
+demos,Demonstrations,训练示例,training lane,3.0,5.0,35.0,14.0,rounded box,weights,training tasks + gold API calls,task-to-call supervision,training split only,Section 3.2; 419 training examples
+prompt,Prompt,提示,context lane,53.0,27.0,46.0,24.0,rounded box,context,task request + API documentation,request + specifications,no,Appendix A; 469 prompt tokens
+adapter,LoRA adapter,LoRA 适配器,weights lane,53.0,5.0,38.0,14.0,rounded box,weights,demonstrations; causal-LM loss on target call tokens,reusable action policy,"yes (trained once, frozen at test)","Section 3.2; Appendix A (rank 16, 8 epochs)"
+model,Qwen3-4B,基座模型,model,113.0,24.0,30.0,22.0,rounded box,base_model,prompt + adapter weights,generated call tokens,base weights frozen,Section 3.2; Appendix A
+call,API call,API 调用,output,151.0,24.0,26.0,22.0,rounded box,output,generated tokens,function name + arguments,no,exact-match evaluation

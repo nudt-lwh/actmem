@@ -1,0 +1,7 @@
+edge_id,source,target,content,trigger,flow_type,linestyle,label
+e1,task,prompt,request text,each request,data,solid,
+e2,docs,prompt,API specifications,each request,data,solid,context
+e3,demos,adapter,task-to-call pairs,"offline, once",training data,solid,
+e4,prompt,model,request + specifications,each request,data,solid,context
+e5,adapter,model,LoRA weights,each request (loaded),parameters,solid,weights
+e6,model,call,generated call,each request,data,solid,

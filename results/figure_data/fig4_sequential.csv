@@ -1,0 +1,4 @@
+adapter,old_api_accuracy,new_api_accuracy
+Old adapter,0.885,0.71
+New-only,0.808,0.903
+New + 30% replay,0.795,0.774

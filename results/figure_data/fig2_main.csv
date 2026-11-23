@@ -1,0 +1,16 @@
+panel,series,split,accuracy,std,prompt_tokens
+a,RAG (full docs),0,0.6605504587,,469
+a,Hybrid (LoRA + full docs),0,0.8348623853,,469
+a,RAG (full docs),1,0.6880733945,,469
+a,Hybrid (LoRA + full docs),1,0.8899082569,,469
+a,RAG (full docs),2,0.6605504587,,469
+a,Hybrid (LoRA + full docs),2,0.8623853211,,469
+a,RAG (full docs),3,0.6422018349,,469
+a,Hybrid (LoRA + full docs),3,0.8623853211,,469
+a,RAG (full docs),4,0.7064220183,,469
+a,Hybrid (LoRA + full docs),4,0.9082568807,,469
+b,LoRA-only,,0.347,0.041,262
+b,LoRA + compact schema,,0.736,0.047,282
+b,RAG (full docs),,0.672,0.025,469
+b,Hybrid (LoRA + full docs),,0.872,0.028,469
+b,k-shot RAG,,0.771,,2197

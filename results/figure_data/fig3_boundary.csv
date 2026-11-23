@@ -1,0 +1,13 @@
+panel,condition,value,n,delta_vs_rag_pp
+a,split 0 RAG,0.775,80,
+a,split 0 Hybrid,0.863,80,+8.8
+a,split 1 RAG,0.749,80,
+a,split 1 Hybrid,0.738,80,-1.1
+a,split 2 RAG,0.625,216,
+a,split 2 Hybrid,0.523,216,-10.2
+b,RAG (full docs),0.679,109,
+b,LoRA-only,0.339,109,
+b,Hybrid (LoRA + full docs),0.853,109,
+c,Full hybrid,0.835,109,+0.0
+c,Shuffled actions,0.376,109,-45.9
+c,No-description training,0.844,109,+0.9
