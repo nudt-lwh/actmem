@@ -1,6 +1,5 @@
 """E9: action-policy consolidation on tau2-bench retail next-action prediction.
 
-from .paths import MODELS, DATA, RUNS  # noqa: F401
 Teacher-forced next-action data from gold retail trajectories. Compare
 base+tools (retrieval analog), adapter+tools (hybrid), adapter without tools
 (consolidation only).
@@ -10,9 +9,7 @@ from __future__ import annotations
 import argparse, gc, json, os, random, re, time
 from datetime import datetime
 
-import torch
-from peft import LoraConfig, PeftModel, get_peft_model
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from .paths import DATA, MODELS, RUNS
 
 TOOL_RE = re.compile(r"<tool_call>\s*(\{.*?\})\s*</tool_call>", re.DOTALL)
 
@@ -69,6 +66,11 @@ def main():
     ap.add_argument("--response_limit", type=int, default=300)
     ap.add_argument("--run_root", default=str(RUNS))
     args = ap.parse_args()
+
+    import torch
+    from peft import LoraConfig, PeftModel, get_peft_model
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
     run_id = "pilot24_tau2_na_" + datetime.now().strftime("%Y%m%d_%H%M%S")
     rd = os.path.join(args.run_root, run_id); os.makedirs(rd, exist_ok=True)
     json.dump(vars(args), open(os.path.join(rd, "config.json"), "w"), indent=2)

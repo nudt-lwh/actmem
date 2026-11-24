@@ -5,8 +5,6 @@ task, depending on payment/MOQ facts learned on previous days. Context is reset;
 conditions compare no memory, RAG notes, LoRA consolidation, and exam-gated
 fallback. The environment checks the action with exact assertions.
 
-This is a synthetic agentic environment, a stepping stone to tau2-bench; it
-tests whether consolidated facts change decisions, not just answers.
 """
 
 from __future__ import annotations

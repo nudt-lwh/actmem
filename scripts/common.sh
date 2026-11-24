@@ -26,3 +26,15 @@ run_tag() {  # tag logfile command...
   rd="$(grep -o 'RUN_DIR=.*' "$log" | tail -1 | cut -d= -f2 || true)"
   if [[ -n "$rd" ]]; then echo "$rd"; fi
 }
+
+split_zero_run() {
+  local rd="${E1_RUN:-}"
+  if [[ -z "$rd" && -f "$RUN_DIR/e1_split0.log" ]]; then
+    rd="$(sed -n 's/^RUN_DIR=//p' "$RUN_DIR/e1_split0.log" | tail -n 1)"
+  fi
+  if [[ -z "$rd" || ! -d "$rd/adapter" ]]; then
+    echo "Set E1_RUN to the split-0 run directory or run scripts/run_e1.sh." >&2
+    return 1
+  fi
+  printf '%s\n' "$rd"
+}

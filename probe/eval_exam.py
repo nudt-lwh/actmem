@@ -162,7 +162,7 @@ def main() -> None:
 
     lines = ["# Morning-exam post-hoc evaluation", ""]
     lines.append("## Exam (held-out templates)")
-    lines.append("| 条件 | 晋升数 | 考试准确率 | 通过验证 | 通过率 |")
+    lines.append("| Condition | Promoted | Exam accuracy | Verified | Pass rate |")
     lines.append("|---|---|---|---|---|")
     for k, v in exam_stats.items():
         lines.append(
@@ -171,7 +171,7 @@ def main() -> None:
         )
     for day in ("day2", "day3"):
         lines.append(f"\n## {day} (exam-gated hybrid)")
-        lines.append("| 条件 | 准确率 | 上下文 token | 高利用簇准确率 | 低利用簇准确率 |")
+        lines.append("| Condition | Accuracy | Context tokens | High-utility cluster accuracy | Low-utility cluster accuracy |")
         lines.append("|---|---|---|---|---|")
         for cond, s in out[day].items():
             lines.append(

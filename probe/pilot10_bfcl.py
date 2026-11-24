@@ -1,11 +1,10 @@
-"""Real benchmark pilot: BFCL function-calling action consolidation.
+"""BFCL function-calling action consolidation.
 
 Exec-simple has 50 functions x 2 tasks. Train on one task per function, test the
 other task with the same function. Conditions:
   no_memory: no function spec, base model
   rag: function spec in context
   lora: function spec consolidated into LoRA; no spec at test
-This is a real function-calling benchmark action task, not a custom toy.
 """
 
 from __future__ import annotations

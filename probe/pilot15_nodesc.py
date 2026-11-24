@@ -1,11 +1,7 @@
-"""Real benchmark pilot: API-Bank API-request consolidation.
+"""Train an API-Bank adapter without candidate API descriptions.
 
-Each API has multiple tasks. Train on some tasks (with API descriptions in the
-prompt), test held-out tasks with the same API:
-  no_memory: no API descriptions, base model
-  rag: API descriptions in context
-  lora: API specs/actions consolidated into LoRA; no descriptions at test
-This is a real tool-use benchmark (API-Bank), not a custom toy.
+Evaluate held-out tasks with the base model or the adapter. Dialogue histories
+may retain API names, parameter keys and tool-search results.
 """
 
 from __future__ import annotations

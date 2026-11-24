@@ -1,7 +1,7 @@
 # ActMem: Consolidating Action Policies into LoRA Weights
 
 Code and data for the paper **“Consolidating Action Policies into LoRA Weights
-Complements Retrieval for API-Calling Agents”** (Neurocomputing submission).
+Complements Retrieval for API-Calling Agents”**.
 
 The repository studies a simple hybrid: train a LoRA adapter on
 task-to-API-call demonstrations, keep API documentation in the prompt at test
@@ -15,7 +15,7 @@ set of attribution/negative controls on API-Bank.
 probe/                     experiment and evaluation code
 tools/                     auxiliary dataset/analysis utilities
 data/apibank/              API-Bank task files used in the paper (Apache-2.0)
-results/figure_data/       CSV/script data behind Figures 2-4
+results/figure_data/       diagram nodes and edges (Figure 1), result tables (Figures 2-4)
 scripts/                   small shell wrappers for the main experiments
 requirements.txt           Python dependencies
 DATA.md                    data and model download notes
@@ -72,8 +72,8 @@ python -m probe.eval_hybrid_apibank \
 `eval_hybrid_apibank` writes `hybrid.json`, `hybrid.md`, and
 `hybrid_rows.json` with per-example outputs and prompt-token counts.
 
-For the five data splits, repeat `pilot11_apibank --seed 0 1 2 3 4` (each seed
-creates its own split and adapter). For the fixed-split five training seeds:
+For the five data splits, run the training and evaluation commands once for each
+seed from 0 through 4, using the same seed for both commands. For the fixed-split five training seeds:
 
 ```bash
 python -m probe.pilot11_apibank \
@@ -112,7 +112,7 @@ The shell wrappers in `scripts/` show complete command sequences; they accept
 ## Reference numbers
 
 These are reference values (5-split means unless noted). Rows marked † are
-additional analyses that are not in the current manuscript version:
+supplementary analyses:
 
 | Experiment | Result |
 |---|---|
@@ -148,7 +148,7 @@ additional analyses that are not in the current manuscript version:
 
 ## Citation
 
-If you use this code, please cite the paper (under review):
+If you use this code, please cite the accompanying paper:
 
 > Consolidating Action Policies into LoRA Weights Complements Retrieval for
 > API-Calling Agents. 2026.

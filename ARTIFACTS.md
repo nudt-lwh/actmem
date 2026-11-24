@@ -3,19 +3,12 @@
 This document maps each paper experiment to its code, canonical run directory,
 expected output files, approximate size, and storage location. The GitHub
 repository holds source code and small inputs. Large binary artifacts are kept
-out of git and published separately when needed.
+outside the repository.
 
-## Storage tiers
-
-| Tier | Contents | Location | Practical size |
-|---|---|---|---|
-| R | Source code, scripts, API-Bank task files, figure data, small JSON | GitHub `main` | 3 MB |
-| G | Per-example rows, summaries, adapters for selected runs | GitHub Release assets | 50 MB to 2 GB |
-| Z | Full run directories, multiple adapters, model snapshots | Zenodo or OSF | 1 GB to 40 GB |
-| C | Raw intermediates on the cloud instance | Not published | 69 GB |
-
-GitHub rejects individual files above 100 MB. Adapters are 67 to 167 MB, so
-they belong in Release assets or an archive, not in the git tree.
+The inventory uses R for small repository-sized files, G for selected run
+outputs and adapters, and Z for full run directories. Only the files under
+“Repository contents” are included in this checkout. The manifest records
+the canonical run identifiers and hashes used to check separately obtained files.
 
 ## Repository contents
 
@@ -24,7 +17,7 @@ probe/                  experiment code
 tools/                  data and analysis utilities
 scripts/                reproduction wrappers
 data/apibank/           API-Bank task files (Apache-2.0)
-results/figure_data/    CSV data for Figures 2-4
+results/figure_data/    CSV data for Figures 1-4
 results/key_results.json
 README.md
 DATA.md
@@ -84,7 +77,7 @@ the full directory.
 | LongMemEval boundary | `probe/pilot5*.py`, `probe/pilot7*.py` | `pilot5_*`, `pilot7_*` | summaries, rows, adapters | 127 MB each | G, Z |
 | Procurement and behavioral checks | `probe/pilot8_agentic_procure.py`, `probe/pilot9_action_train.py` | `pilot8_agentic_*`, `pilot9_action_*` | summaries, rows, adapters | 127-142 MB each | G, Z |
 | Test-time-only renaming | `probe/pilot25_testtime_rename.py` | `pilot25_tt_rename_20261122_190813`, `..._191504` | `summary.json`, `rows.json`, `rename_checks.json`, `key_metrics.json` | 258 KB each | R |
-| Figure 2-4 data | `results/figure_data/` | not applicable | CSV tables | <1 MB | R |
+| Figure 1-4 data | `results/figure_data/` | not applicable | CSV tables | <1 MB | R |
 
 The old `pilot19_cf_apibank.py` is not included. It had a parameter-name
 replacement bug and its results were replaced by `pilot19_cf_apibank_v2.py`.
@@ -112,43 +105,3 @@ To verify an extracted archive, compare its file hashes against the manifest:
 awk -F '\t' '$1=="pilot11_apibank_20261115_063049" {print $4"  "$2}' artifacts_manifest.tsv \
   | (cd pilot11_apibank_20261115_063049 && sha256sum -c -)
 ```
-
-## Packaging for release and archive
-
-Selected per-example rows and one adapter:
-
-```bash
-zip -r actmem-e1-seed0.zip \
-  runs/pilot11_apibank_20261115_063049/{config.json,summary.json,hybrid.json,hybrid_rows.json,adapter}
-```
-
-A full run directory for Zenodo:
-
-```bash
-tar -czf actmem-run-pilot11-seed0.tar.gz runs/pilot11_apibank_20261115_063049
-```
-
-Suggested Release assets:
-
-- `actmem-e1-seed0.zip` (127 MB)
-- `actmem-e1-seed1.zip` to `actmem-e1-seed4.zip`
-- `actmem-controls.zip` (shuffled, no-description, counterfactual)
-- `actmem-boundary.zip` (held-out, sequential, gate, level-3, periodic)
-- `actmem-testtime-rename.zip` (small JSON only)
-
-Suggested Zenodo deposit:
-
-- one archive per model family, or one archive with all run directories
-- model snapshots only if the repository requires them; otherwise cite the
-  upstream Hugging Face model IDs and commit hashes
-
-## Release checklist
-
-1. Confirm the git tree contains no model weights, adapters, raw runs, or
-   virtual environments.
-2. Run `sha256sum -c CHECKSUMS.sha256`.
-3. Build Release assets and record their sizes and SHA-256 values.
-4. Upload the full run archive to Zenodo or OSF and mint a DOI.
-5. Add the DOI and Release URL to `README.md` and the manuscript data
-   availability statement.
-6. Re-run `python -m compileall probe tools` and one short CLI smoke test.

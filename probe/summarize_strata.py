@@ -73,7 +73,7 @@ def main() -> None:
     lines = ["# Stratified single-hop summary", ""]
     for day in ("day2", "day3"):
         lines.append(f"## {day}")
-        lines.append("| 条件 | long-high | long-low | short-high | short-low | 总 | ctx | missing |")
+        lines.append("| Condition | long-high | long-low | short-high | short-low | Overall | ctx | missing |")
         lines.append("|---|---|---|---|---|---|---|---|")
         for cond, s in out[day].items():
             st = s["strata"]

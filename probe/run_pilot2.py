@@ -8,7 +8,6 @@ Conditions:
   no_memory, oracle_context, rag_bm25,
   mdl_noexam_hybrid, mdl_exam_hybrid, random_exam_hybrid, longest_exam_hybrid.
 
-One seed by default; scale to 3 seeds only if the pilot shows a clear signal.
 """
 
 from __future__ import annotations
@@ -533,14 +532,14 @@ def main() -> None:
                  f"filtered {gate_stats['filtered']}, CP {gate_stats['compression_progress']:.3f}")
     lines.append(f"- promote_k {args.promote_k}; context budget {args.context_budget} tokens")
     lines.append("\n## Exam")
-    lines.append("| 条件 | 考试准确率 | verified | verified率 |")
+    lines.append("| Condition | Exam accuracy | verified | Verification rate |")
     lines.append("|---|---|---|---|")
     for k, v in exam_stats.items():
         lines.append(f"| {k} | {v['exam_accuracy']:.3f} | {v['verified']} | "
                      f"{v['verified_rate']:.3f} |")
     for day in ("day2", "day3"):
         lines.append(f"\n## {day}")
-        lines.append("| 条件 | 准确率 | single | multi | 上下文token | missing率 |")
+        lines.append("| Condition | Accuracy | single | multi | Context tokens | Missing rate |")
         lines.append("|---|---|---|---|---|---|")
         for cond, s in summary[day].items():
             lines.append(

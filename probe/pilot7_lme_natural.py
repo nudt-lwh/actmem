@@ -1,9 +1,8 @@
 """Natural-counterfactual LongMemEval micro-pilot.
 
 Like pilot5c, but the gold answer is replaced by a natural alternative
-(name/number/date/phrase) rather than a CF-xxxxxx token. This reduces the
-artificial-token criticism and makes the context reader able to copy the new
-value.
+(name/number/date/phrase) rather than a CF-xxxxxx token. The context reader can copy the replacement
+value from the evidence.
 """
 
 from __future__ import annotations

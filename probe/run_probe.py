@@ -385,21 +385,21 @@ def main() -> None:
     # Human-readable summary.
     lines = []
     lines.append(f"# Probe {run_id}\n")
-    lines.append(f"- 模型：`{args.model}`\n- seed：{args.seed}；suppliers：{args.n_suppliers}")
-    lines.append(f"- 门控写入率：{gate_stats['written'] + gate_stats['updates']}"
-                 f"/{gate_stats['observed']}；过滤：{gate_stats['filtered']}")
-    lines.append(f"- 记忆条目：{gate_stats['memory_entries']}；CP（token 级）："
+    lines.append(f"- Model: `{args.model}`\n- Seed: {args.seed}, suppliers: {args.n_suppliers}")
+    lines.append(f"- Gate write rate: {gate_stats['written'] + gate_stats['updates']}"
+                 f"/{gate_stats['observed']}, filtered: {gate_stats['filtered']}")
+    lines.append(f"- Memory entries: {gate_stats['memory_entries']}, token-level compression progress: "
                  f"{gate_stats['compression_progress']:.3f}")
     for day in ("day2", "day3"):
         lines.append(f"\n## {day}")
-        lines.append("| 条件 | 准确率 | 上下文 token | 高利用簇准确率 | 低利用簇准确率 |")
+        lines.append("| Condition | Accuracy | Context tokens | High-utility cluster accuracy | Low-utility cluster accuracy |")
         lines.append("|---|---|---|---|---|")
         for cond, s in summary[day].items():
             lines.append(
                 f"| {cond} | {s['accuracy']:.3f} | {s['avg_context_tokens']:.1f} | "
                 f"{s['accuracy_high']:.3f} | {s['accuracy_low']:.3f} |"
             )
-    lines.append("\n## 训练")
+    lines.append("\n## Training")
     for k, m in train_meta.items():
         lines.append(
             f"- {k}: examples={m.get('examples')}, steps={m.get('steps')}, "
