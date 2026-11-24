@@ -1,5 +1,4 @@
 {
-  "paper": "Consolidating Action Policies into LoRA Weights Complements Retrieval for API-Calling Agents",
   "api_bank_e1_five_splits": {
     "rag": 0.672,
     "hybrid": 0.872,

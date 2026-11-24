@@ -1,7 +1,4 @@
-# ActMem: Consolidating Action Policies into LoRA Weights
-
-Code and data for the paper **“Consolidating Action Policies into LoRA Weights
-Complements Retrieval for API-Calling Agents”**.
+# ActMem
 
 The repository studies a simple hybrid: train a LoRA adapter on
 task-to-API-call demonstrations, keep API documentation in the prompt at test
@@ -145,13 +142,6 @@ supplementary analyses:
 - `probe/pilot19_cf_apibank.py` (old implementation) is intentionally not
   included; it had a parameter-name replacement bug. Use
   `pilot19_cf_apibank_v2.py`.
-
-## Citation
-
-If you use this code, please cite the accompanying paper:
-
-> Consolidating Action Policies into LoRA Weights Complements Retrieval for
-> API-Calling Agents. 2026.
 
 ## License
 
